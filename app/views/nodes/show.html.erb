@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Lat:</b>
+  <%= @node.lat %>
+</p>
+
+<p>
+  <b>Lon:</b>
+  <%= @node.lon %>
+</p>
+
+<p>
+  <b>Osmid:</b>
+  <%= @node.osmid %>
+</p>
+
+<p>
+  <b>Way:</b>
+  <%= @node.way_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_node_path(@node) %> |
+<%= link_to 'Back', nodes_path %>

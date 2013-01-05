@@ -1,4 +1,10 @@
 BGT::Application.routes.draw do
+  resources :nodes
+
+
+  resources :ways
+
+
   get "home/index"
 
   # The priority is based upon order of creation:

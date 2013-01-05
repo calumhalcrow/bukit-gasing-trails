@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  lat: 1.5
+  lon: 1.5
+  osmid: 1
+  way_id: 1
+
+two:
+  lat: 1.5
+  lon: 1.5
+  osmid: 1
+  way_id: 1
