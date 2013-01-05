@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>BGT</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDFsxVoSRsnyx-mtn3pYci3PWM2OVoONW0&sensor=false"></script>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -11,4 +13,3 @@
 <%= yield %>
 
 </body>
-</html>
