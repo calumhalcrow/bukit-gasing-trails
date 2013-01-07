@@ -6,7 +6,7 @@ class WaysController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @ways }
+      format.json { render :json => @ways.to_json(:include => :nodes) }
     end
   end
 
