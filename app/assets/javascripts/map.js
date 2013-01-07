@@ -16,7 +16,27 @@ $(function () {
             way.nodes.forEach(function(node) {
                 coords.push(new google.maps.LatLng(node.lat, node.lon));
             });
-            (new google.maps.Polygon({ paths: coords })).setMap(map);
+            var shape = Shape(way);
+            var options = ShapeOptions(shape);
+            options['path'] = coords;
+
+            (new google.maps[shape](options)).setMap(map);
         });
     });
 });
+
+var Shape = function (way) {
+    return (way.category == 'trail') ? 'Polyline' : 'Polygon';
+};
+
+var ShapeOptions = function (shape) {
+    var options = {};
+    if (shape == 'Polyline') {
+        options = {
+            strokeColor: '#00ff00',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        };
+    }
+    return options;
+};
