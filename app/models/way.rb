@@ -3,7 +3,7 @@ require 'xmlsimple'
 
 class Way < ActiveRecord::Base
   attr_accessible :category, :name
-  has_many :positions
+  has_many :positions, :order => '"order"'
   has_many :nodes, :through => :positions
 
   def self.fetch_from_OSM(osmid)

@@ -13,8 +13,8 @@ $(function () {
     request.done(function(ways) {
         ways.forEach(function(way) {
             var coords = new Array();
-            way.nodes.forEach(function(node) {
-                coords.push(new google.maps.LatLng(node.lat, node.lon));
+            way.positions.forEach(function(position) {
+                coords.push(new google.maps.LatLng(position.node.lat, position.node.lon));
             });
             var shape = Shape(way);
             var options = ShapeOptions(shape);
