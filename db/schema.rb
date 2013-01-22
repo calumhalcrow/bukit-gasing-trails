@@ -10,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130105060003) do
+ActiveRecord::Schema.define(:version => 20130122123222) do
 
   create_table "nodes", :force => true do |t|
     t.float    "lat"
     t.float    "lon"
     t.integer  "osmid"
     t.integer  "way_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "positions", :force => true do |t|
+    t.integer  "way_id"
+    t.integer  "node_id"
+    t.integer  "order"
+    t.string   "title"
+    t.string   "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
