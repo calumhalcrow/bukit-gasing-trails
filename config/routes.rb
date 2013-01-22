@@ -1,4 +1,7 @@
 BGT::Application.routes.draw do
+  resources :positions
+
+
   resources :nodes
 
 

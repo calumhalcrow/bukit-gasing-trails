@@ -1,0 +1,31 @@
+<h1>Listing positions</h1>
+
+<table>
+  <tr>
+    <th>Way</th>
+    <th>Node</th>
+    <th>Order</th>
+    <th>Title</th>
+    <th>Desc</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @positions.each do |position| %>
+  <tr>
+    <td><%= position.way_id %></td>
+    <td><%= position.node_id %></td>
+    <td><%= position.order %></td>
+    <td><%= position.title %></td>
+    <td><%= position.desc %></td>
+    <td><%= link_to 'Show', position %></td>
+    <td><%= link_to 'Edit', edit_position_path(position) %></td>
+    <td><%= link_to 'Destroy', position, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Position', new_position_path %>

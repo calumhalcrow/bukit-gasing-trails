@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Way:</b>
+  <%= @position.way_id %>
+</p>
+
+<p>
+  <b>Node:</b>
+  <%= @position.node_id %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @position.order %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @position.title %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @position.desc %>
+</p>
+
+
+<%= link_to 'Edit', edit_position_path(@position) %> |
+<%= link_to 'Back', positions_path %>
