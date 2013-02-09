@@ -11,7 +11,15 @@ class Way < ActiveRecord::Base
     body = RestClient.get "http://www.openstreetmap.org/api/0.6/way/#{osmid}"
     way_data = XmlSimple.xml_in(body)
 
-    way = Way.create(:category => 'trail')
+    name = nil
+    way_data['way'][0]['tag'].each do |tag|
+      if tag['k'] == 'name'
+        name = tag['v']
+        break
+      end
+    end
+
+    way = Way.create(:category => 'trail', :name => name)
 
     way_data['way'][0]['nd'].each_with_index do |node_data, index|
       body = RestClient.get "http://www.openstreetmap.org/api/0.6/node/#{node_data['ref']}"
