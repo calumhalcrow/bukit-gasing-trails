@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122123222) do
+ActiveRecord::Schema.define(:version => 20130210003504) do
 
   create_table "nodes", :force => true do |t|
     t.float    "lat"
@@ -27,15 +27,21 @@ ActiveRecord::Schema.define(:version => 20130122123222) do
     t.integer  "order"
     t.string   "title"
     t.string   "desc"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "enabled",    :default => true
+    t.boolean  "has_image",  :default => false
+    t.boolean  "has_icon",   :default => false
   end
 
   create_table "ways", :force => true do |t|
     t.string   "name"
     t.string   "category"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.boolean  "enabled",    :default => true
+    t.text     "desc"
+    t.integer  "osmid"
   end
 
 end

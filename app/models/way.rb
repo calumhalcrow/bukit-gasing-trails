@@ -2,7 +2,7 @@ require 'rest_client'
 require 'xmlsimple'
 
 class Way < ActiveRecord::Base
-  attr_accessible :category, :name
+  attr_accessible :category, :name, :enabled, :desc, :osmid
   has_many :positions, :order => '"order"'
   has_many :nodes, :through => :positions
 
