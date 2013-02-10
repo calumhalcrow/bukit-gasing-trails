@@ -8,7 +8,7 @@ $(function () {
     var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
     var request = $.ajax({
-        url: "/ways.json"
+        url: "/ways.json?enabled=true"
     });
     request.done(function(ways) {
         ways.forEach(function(way) {

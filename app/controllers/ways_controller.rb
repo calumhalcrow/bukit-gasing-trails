@@ -2,7 +2,7 @@ class WaysController < ApplicationController
   # GET /ways
   # GET /ways.json
   def index
-    @ways = Way.all
+    @ways = params[:enabled] ? Way.where(:enabled => true) : Way.all
 
     respond_to do |format|
       format.html # index.html.erb
