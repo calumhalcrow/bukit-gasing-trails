@@ -6,7 +6,7 @@ class Way < ActiveRecord::Base
   has_many :positions, :order => '"order"'
   has_many :nodes, :through => :positions
 
-  def self.fetch_from_OSM(osmid)
+  def self.fetch_from_OSM(osmid, enabled)
     # Hit OSM API.
     body = RestClient.get "http://www.openstreetmap.org/api/0.6/way/#{osmid}"
     way_data = XmlSimple.xml_in(body)
@@ -30,7 +30,7 @@ class Way < ActiveRecord::Base
 
     category = (highway == 'unclassified') ? 'road' : bridge ? 'bridge' : (landuse == 'forest') ? 'boundary' : (amenity || landuse || leisure || 'trail')
 
-    way = Way.create(:category => category, :name => name, :osmid => osmid)
+    way = Way.create(:category => category, :name => name, :osmid => osmid, :enabled => enabled)
 
     way_data['way'][0]['nd'].each_with_index do |node_data, index|
       body = RestClient.get "http://www.openstreetmap.org/api/0.6/node/#{node_data['ref']}"
