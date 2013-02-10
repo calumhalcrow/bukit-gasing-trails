@@ -71,7 +71,7 @@ var PolyTypeAndOptions = function (way) {
             fillOpacity: 0.5,
             clickable: false
         };
-    } else if (way.category == 'place') {
+    } else if (way.category == 'place_of_worship' || way.category == 'cemetery' || way.category == 'playground') {
         polyType = 'Polygon';
         options = {
             strokeColor: "#7D4281",
@@ -97,6 +97,14 @@ var PolyTypeAndOptions = function (way) {
             strokeColor: '#ffffff',
             strokeOpacity: 1.0,
             strokeWeight: 4,
+            zIndex: 10
+        };
+    } else if (way.category == 'bridge') {
+        polyType = 'Polyline';
+        options = {
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 5,
             zIndex: 10
         };
     }
