@@ -40,3 +40,6 @@ gem 'jquery-rails'
 
 gem 'rest-client'
 gem 'xml-simple'
+
+gem 'activeadmin'
+gem "meta_search",    '>= 1.1.0.pre'
