@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20130210003504) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "enabled",    :default => true
     t.boolean  "has_image",  :default => false
-    t.boolean  "has_icon",   :default => false
+    t.string   "icon"
   end
 
   create_table "ways", :force => true do |t|
