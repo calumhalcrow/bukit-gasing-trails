@@ -1,3 +1,9 @@
 Source code of an upcoming web site showcasing the Bukit Gasing forest park in Kuala Lumpur.
 
 Built on Rails and will feature a map of the park built on the Google Maps JS API.
+
+Notes
+-----
+
+To convert OSM to KML, do:
+osmexport kml-simple.oxr /path/to/full.osm /path/to/full.kml
