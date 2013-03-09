@@ -25,6 +25,7 @@ GEM
     rake (10.0.3)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    sass (3.2.7)
     syntax (1.0.0)
     xml-simple (1.1.2)
     yajl-ruby (1.1.0)
@@ -37,4 +38,5 @@ DEPENDENCIES
   json
   rake
   rest-client
+  sass
   xml-simple
