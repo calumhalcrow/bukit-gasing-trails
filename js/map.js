@@ -26,7 +26,8 @@ var bukitGasing = function () {
 
     that.fetch_ways = function () {
         var request = $.ajax({
-            url: "/ways.json?enabled=true"
+            url: "/js/map.json",
+            dataType: 'json'
         });
         request.done(function (ways_array) {
             ways = ways_array;
