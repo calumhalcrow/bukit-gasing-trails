@@ -22,6 +22,7 @@ GEM
     pygments.rb (0.3.7)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
+    rake (10.0.3)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     syntax (1.0.0)
@@ -34,5 +35,6 @@ PLATFORMS
 DEPENDENCIES
   jekyll
   json
+  rake
   rest-client
   xml-simple

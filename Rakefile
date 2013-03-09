@@ -1,7 +1,10 @@
 #!/usr/bin/env rake
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-require File.expand_path('../config/application', __FILE__)
+require 'kmlparser'
 
-BGT::Application.load_tasks
+namespace :gm do
+  desc "Fetch map data from Google Maps and save to JSON."
+  task :fetch do
+    puts KMLParser.new(['201404948400955778919.0004d6ea86b20318ce63f']).to_json
+  end
+end
