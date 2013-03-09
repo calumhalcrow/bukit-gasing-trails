@@ -1,3 +1,5 @@
+require 'kmlparser'
+
 namespace :osm do
   desc "Fetch Way from OSM API and save it to DB."
   task :fetch_way, [:osmid] => :environment do |t, args|
@@ -53,5 +55,12 @@ namespace :osm do
     ways.each do |way|
       Rake::Task['osm:fetch_way'].execute(OpenStruct.new({:osmid => way[0], :enabled => way[1]}))
     end
+  end
+end
+
+namespace :gm do
+  desc "Fetch map data from Google Maps and save to JSON."
+  task :fetch => :environment do
+    puts KMLParser.new(['201404948400955778919.0004d6ea86b20318ce63f']).to_json
   end
 end
