@@ -60,7 +60,7 @@ var bukitGasing = function () {
     that.make_info_window_event = function (shape, way) {
         google.maps.event.addListener(shape, 'click', function (event) {
             var infoWindow = new google.maps.InfoWindow({
-                content: 'ID: '+way['id'],
+                content: (way.name ? way.name : 'ID: '+way['id']),
                 position: event.latLng
             });
             infoWindow.open(map);
@@ -146,8 +146,7 @@ var bukitGasing = function () {
                 strokeOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: "#54A9D9",
-                fillOpacity: 0.5,
-                clickable: false
+                fillOpacity: 0.5
             };
         } else if (way.category == 'place_of_worship' || way.category == 'cemetery' || way.category == 'playground') {
             polyType = 'Polygon';
@@ -156,8 +155,7 @@ var bukitGasing = function () {
                 strokeOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: "#B440BB",
-                fillOpacity: 0.5,
-                clickable: false
+                fillOpacity: 0.5
             };
         } else if (way.category == 'parking') {
             polyType = 'Polygon';
@@ -166,8 +164,7 @@ var bukitGasing = function () {
                 strokeOpacity: 0.5,
                 strokeWeight: 1,
                 fillColor: "#F0E328",
-                fillOpacity: 0.5,
-                clickable: false
+                fillOpacity: 0.5
             };
         } else if (way.category == 'road') {
             polyType = 'Polyline';
