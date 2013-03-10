@@ -34,7 +34,6 @@ var bukitGasing = function () {
             ways = data.ways;
             points = data.points;
             that.display_ways_on_map();
-            that.show_icons();
             google.maps.event.addListener(map, 'zoom_changed', that.on_zoom_changed);
         });
     };
@@ -61,9 +60,16 @@ var bukitGasing = function () {
     };
 
     that.make_info_window_event = function (shape, way) {
+        if (!way.name) {
+            return;
+        }
+        var content = '<h1>'+way.name+'</h1>';
+        if (way.desc) {
+            content = content+'<p>'+way.desc+'</p>'
+        }
         google.maps.event.addListener(shape, 'click', function (event) {
             var infoWindow = new google.maps.InfoWindow({
-                content: (way.name ? way.name : 'ID: '+way['id']),
+                content: content,
                 position: event.latLng
             });
             infoWindow.open(map);
@@ -95,12 +101,12 @@ var bukitGasing = function () {
             markers.push(marker);
 
             var infoWindow = new google.maps.InfoWindow({
-                content: point.desc,
+                content: '<h1>'+point.name+'</h1><p>'+point.desc+'</p>',
                 maxWidth: 200
             });
 
             google.maps.event.addListener(marker, 'click', function() {
-              infoWindow.open(map, marker);
+                infoWindow.open(map, marker);
             });
         });
     };
@@ -141,7 +147,7 @@ var bukitGasing = function () {
                 fillColor: "#54A9D9",
                 fillOpacity: 0.5
             };
-        } else if (way.category == 'place_of_worship' || way.category == 'cemetery' || way.category == 'playground') {
+        } else if (way.category == 'place_of_worship' || way.category == 'cemetery' || way.category == 'playground' || way.category == 'park') {
             polyType = 'Polygon';
             options = {
                 strokeColor: "#7D4281",
