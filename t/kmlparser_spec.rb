@@ -19,8 +19,14 @@ describe KMLParser, '#parse' do
     expect(parser.ways.length).to eq(7)
     expect(parser.ways[0]["name"]).to eq("Pantai Hillpark Link")
 
-    expect(parser.points[0]["name"]).to eq("Old House")
     expect(parser.points.length).to eq(1)
+    expect(parser.points[0]["name"]).to eq("Old House")
+    expect(parser.points[0]["icon"]).to eq("lookouttower")
+    expect(parser.points[0]["desc"]).to eq("This is where the old house is.")
+
+    rimba = parser.ways.select{|w| w["name"] == "Rimba Tower"}[0]
+    expect(rimba["desc"]).to eq("Nice little park.");
+    expect(rimba["category"]).to eq("park");
   end
 end
 
@@ -91,7 +97,7 @@ def _sample_data
           "coordinates"=>
            ["\n        101.659737,3.098931,0.000000\n        101.659798,3.099012,0.000000\n        101.659782,3.099078,0.000000\n        101.660027,3.099274,0.000000\n      "]}]},
       {"name"=>["Rimba Tower"],
-       "description"=>[{}],
+       "description"=>['{"category":"park","desc":"Nice little park."}'],
        "styleUrl"=>["#style2"],
        "LineString"=>
         [{"tessellate"=>["1"],
@@ -99,7 +105,7 @@ def _sample_data
            ["\n        101.661522,3.096810,0.000000\n        101.661583,3.096750,0.000000\n        101.661423,3.096560,0.000000\n        101.660912,3.096200,0.000000\n        101.660881,3.096050,0.000000\n        101.660973,3.095602,0.000000\n      "]}]},
       {"name"=>["Old House"],
        "description"=>
-        ["<img src=\"http://irelandsbrothers.com/wp-content/uploads/2012/08/house.jpg\"><div dir=\"ltr\">This is where the old rubber planter's house is.</div>"],
+        ['{"icon":"lookouttower","desc":"This is where the old house is."}'],
        "styleUrl"=>["#style8"],
        "Point"=>[{"coordinates"=>["101.659851,3.099116,0.000000"]}]}]}]}]
 end

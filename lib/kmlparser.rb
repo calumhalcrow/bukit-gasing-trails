@@ -42,9 +42,14 @@ class KMLParser
       coords = self._extract_coords(placemark)
       way = {
         "positions" => self._build_positions(coords),
-        "category" => "trail",
         "name" => placemark["name"][0],
+        "category" => "trail",
       }
+      if (placemark["description"][0].is_a? String)
+        meta = JSON.parse(placemark["description"][0])
+        way["category"] = meta["category"]
+        way["desc"] = meta["desc"]
+      end
       ways.push(way)
     end
     return ways
@@ -54,10 +59,11 @@ class KMLParser
     points = []
     placemarks.select{|p| p["Point"]}.each do |placemark|
       lon, lat, alt = self._extract_coords(placemark)[0].split(',')
+      meta = JSON.parse(placemark["description"][0])
       point = {
         "name" => placemark["name"][0],
-        "icon" => "watchtower",
-        "desc" => 'This is a point!',
+        "icon" => meta["icon"],
+        "desc" => meta["desc"],
         "node" => {"lat" => lat, "lon" => lon},
       }
       points.push(point)
