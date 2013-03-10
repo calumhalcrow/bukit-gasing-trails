@@ -29,8 +29,8 @@ var bukitGasing = function () {
             url: "/js/map.json",
             dataType: 'json'
         });
-        request.done(function (ways_array) {
-            ways = ways_array;
+        request.done(function (data) {
+            ways = data.ways;
             that.display_ways_on_map();
             that.set_positions_with_icons();
             google.maps.event.addListener(map, 'zoom_changed', that.on_zoom_changed);

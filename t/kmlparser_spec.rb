@@ -17,6 +17,10 @@ describe KMLParser, '#parse' do
 
     expect(parser.ways).not_to be_empty
     expect(parser.ways.length).to eq(7)
+    expect(parser.ways[0]["name"]).to eq("Pantai Hillpark Link")
+
+    expect(parser.points[0]["name"]).to eq("Old House")
+    expect(parser.points.length).to eq(1)
   end
 end
 
