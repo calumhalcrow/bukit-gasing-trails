@@ -30,7 +30,7 @@ class KMLParser
 
   def parse
     data = self.gm_data
-    placemarks = data["Document"][0]["Placemark"]
+    placemarks = data[0]["Document"][0]["Placemark"]
 
     @ways = _build_ways(placemarks)
     @points = _build_points(placemarks)

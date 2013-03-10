@@ -25,7 +25,7 @@ describe KMLParser, '#parse' do
 end
 
 def _sample_data
-  return {"xmlns"=>"http://earth.google.com/kml/2.2",
+  return [{"xmlns"=>"http://earth.google.com/kml/2.2",
  "Document"=>
   [{"name"=>["Bukit Gasing Uncharted"],
     "description"=>[{}],
@@ -101,5 +101,5 @@ def _sample_data
        "description"=>
         ["<img src=\"http://irelandsbrothers.com/wp-content/uploads/2012/08/house.jpg\"><div dir=\"ltr\">This is where the old rubber planter's house is.</div>"],
        "styleUrl"=>["#style8"],
-       "Point"=>[{"coordinates"=>["101.659851,3.099116,0.000000"]}]}]}]}
+       "Point"=>[{"coordinates"=>["101.659851,3.099116,0.000000"]}]}]}]}]
 end
