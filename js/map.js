@@ -5,6 +5,7 @@ $(function () {
 var bukitGasing = function () {
     var that = {};
     var ways = [];
+    var points = [];
     var map;
     var positions_with_icons = [];
     var icons_hidden = true;
@@ -31,8 +32,9 @@ var bukitGasing = function () {
         });
         request.done(function (data) {
             ways = data.ways;
+            points = data.points;
             that.display_ways_on_map();
-            that.set_positions_with_icons();
+            that.show_icons();
             google.maps.event.addListener(map, 'zoom_changed', that.on_zoom_changed);
         });
     };
@@ -68,16 +70,6 @@ var bukitGasing = function () {
         });
     };
 
-    that.set_positions_with_icons = function () {
-        ways.forEach(function (way) {
-            way.positions.forEach(function (position) {
-                if (position.icon) {
-                    positions_with_icons.push(position);
-                }
-            });
-        });
-    };
-
     that.on_zoom_changed = function () {
         var zoomLevel = map.getZoom();
         if (zoomLevel >= 18 && icons_hidden) {
@@ -90,20 +82,20 @@ var bukitGasing = function () {
     };
 
     that.show_icons = function () {
-        positions_with_icons.forEach(function (position) {
-            var latLng = new google.maps.LatLng(position.node.lat, position.node.lon);
+        points.forEach(function (point) {
+            var latLng = new google.maps.LatLng(point.node.lat, point.node.lon);
 
             // Add placemark at this position with icon.
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: map,
-                icon: '/assets/'+position.icon+'.png'
+                icon: '/img/'+point.icon+'.png'
             });
 
             markers.push(marker);
 
             var infoWindow = new google.maps.InfoWindow({
-                content: position.desc,
+                content: point.desc,
                 maxWidth: 200
             });
 

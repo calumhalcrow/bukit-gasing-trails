@@ -57,6 +57,7 @@ class KMLParser
       point = {
         "name" => placemark["name"][0],
         "icon" => "watchtower",
+        "desc" => 'This is a point!',
         "node" => {"lat" => lat, "lon" => lon},
       }
       points.push(point)
