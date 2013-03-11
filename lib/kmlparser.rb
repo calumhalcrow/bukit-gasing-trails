@@ -6,7 +6,7 @@ require 'json'
 class KMLParser
   attr_accessor :map_ids, :ways, :points
 
-  def initialize(map_ids)
+  def initialize(*map_ids)
     @map_ids = map_ids
     @gm_data
     @ways = []
@@ -23,21 +23,26 @@ class KMLParser
     data = []
     @map_ids.each do |map_id|
       body = RestClient.get "https://maps.google.com/maps/ms?authuser=0&vps=2&ie=UTF8&msa=0&output=kml&msid=#{map_id}"
-      data.push(XmlSimple.xml_in(body))
+      data << XmlSimple.xml_in(body)
     end
     self.gm_data = data
   end
 
   def parse
     data = self.gm_data
-    placemarks = data[0]["Document"][0]["Placemark"]
 
-    @ways = _build_ways(placemarks)
-    @points = _build_points(placemarks)
+    placemarks = []
+    data.each do |elt|
+      elt["Document"][0]["Placemark"].each do |p|
+        placemarks << p
+      end
+    end
+
+    _extract_ways(placemarks)
+    _extract_points(placemarks)
   end
 
-  def _build_ways(placemarks)
-    ways = []
+  def _extract_ways(placemarks)
     placemarks.select{|p| not p["Point"]}.each do |placemark|
       coords = self._extract_coords(placemark)
       way = {
@@ -45,18 +50,16 @@ class KMLParser
         "name" => placemark["name"][0],
         "category" => "trail",
       }
-      if (placemark["description"][0].is_a? String)
+      if (placemark["description"].is_a? Array and placemark["description"][0].is_a? String)
         meta = JSON.parse(placemark["description"][0])
         way["category"] = meta["category"]
         way["desc"] = meta["desc"]
       end
-      ways.push(way)
+      @ways << way
     end
-    return ways
   end
 
-  def _build_points(placemarks)
-    points = []
+  def _extract_points(placemarks)
     placemarks.select{|p| p["Point"]}.each do |placemark|
       lon, lat, alt = self._extract_coords(placemark)[0].split(',')
       meta = JSON.parse(placemark["description"][0])
@@ -66,9 +69,8 @@ class KMLParser
         "desc" => meta["desc"],
         "node" => {"lat" => lat, "lon" => lon},
       }
-      points.push(point)
+      @points << point
     end
-    return points
   end
 
   def to_json
@@ -94,7 +96,7 @@ class KMLParser
     positions = []
     coords.each do |coord|
       lon, lat, alt = coord.split(',')
-      positions.push({:node => {:lat => lat, :lon => lon}})
+      positions << {:node => {:lat => lat, :lon => lon}}
     end
     return positions
   end
