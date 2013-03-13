@@ -59,18 +59,13 @@ var bukitGasing = function () {
         });
     };
 
-    that.make_info_window_event = function (shape, way) {
-        if (!way.name) {
-            return;
-        }
-        var content = '<h1>'+way.name+'</h1>';
-        if (way.desc) {
-            content = content+'<p>'+way.desc+'</p>'
-        }
+    that.make_info_window_event = function (shape, model) {
         google.maps.event.addListener(shape, 'click', function (event) {
+            var position = shape.position || event.latLng;
             var infoWindow = new google.maps.InfoWindow({
-                content: content,
-                position: event.latLng
+                content: that._info_window_content(model),
+                position: position,
+                maxWidth: 500
             });
             infoWindow.open(map);
         });
@@ -95,20 +90,24 @@ var bukitGasing = function () {
             var marker = new google.maps.Marker({
                 position: latLng,
                 map: map,
-                icon: '/img/'+point.icon+'.png'
+                icon: '/img/'+point.category+'.png'
             });
 
             markers.push(marker);
-
-            var infoWindow = new google.maps.InfoWindow({
-                content: '<h1>'+point.name+'</h1><p>'+point.desc+'</p>',
-                maxWidth: 200
-            });
-
-            google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.open(map, marker);
-            });
+            that.make_info_window_event(marker, point);
         });
+    };
+
+    that._info_window_content = function (model) {
+        var content = '<div class="infowindow"><h1>'+model.name+'</h1>';
+        if (model.thumb) {
+            content = content+'<img src="'+model.thumb+'"/>';
+        }
+        if (model.desc) {
+            content = content+'<p>'+model.desc+'</p>';
+        }
+        content = content+'</div>';
+        return content;
     };
 
     that.hide_icons = function () {

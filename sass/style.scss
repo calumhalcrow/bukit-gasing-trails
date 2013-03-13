@@ -42,5 +42,17 @@ body {
         width: 61%;
         height: 100%;
         border: 1px solid #666;
+        .infowindow {
+          width: 360px;
+          h1 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+            text-align: center;
+          }
+          img {
+            padding-right: 10px;
+            float: left;
+          }
+        }
     }
 }
