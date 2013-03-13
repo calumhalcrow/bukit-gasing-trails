@@ -168,7 +168,7 @@ var bukitGasing = function () {
             polyType = 'Polyline';
             options = {
                 strokeColor: '#ffffff',
-                strokeOpacity: 1.0,
+                strokeOpacity: 0.5,
                 strokeWeight: 4,
                 zIndex: 10
             };
