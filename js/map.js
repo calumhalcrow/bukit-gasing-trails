@@ -20,7 +20,7 @@ var bukitGasing = function () {
         var mapOptions = {
             center: new google.maps.LatLng(3.097943, 101.660782),
             zoom: 16,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+            mapTypeId: google.maps.MapTypeId.HYBRID
         };
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
     };
