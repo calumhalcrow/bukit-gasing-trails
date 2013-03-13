@@ -2,7 +2,7 @@ require 'kmlparser'
 
 describe KMLParser, '#new' do
   it "has some object attrs after construction" do
-    parser = KMLParser.new([1234])
+    parser = KMLParser.new(1234)
     parser.map_ids.should eq([1234])
   end
 end
@@ -21,8 +21,9 @@ describe KMLParser, '#parse' do
 
     expect(parser.points.length).to eq(1)
     expect(parser.points[0]["name"]).to eq("Old House")
-    expect(parser.points[0]["icon"]).to eq("lookouttower")
+    expect(parser.points[0]["category"]).to eq("lookouttower")
     expect(parser.points[0]["desc"]).to eq("This is where the old house is.")
+    expect(parser.points[0]["thumb"]).to eq("http://example.com/thumb.jpg")
 
     rimba = parser.ways.select{|w| w["name"] == "Rimba Tower"}[0]
     expect(rimba["desc"]).to eq("Nice little park.");
@@ -105,7 +106,7 @@ def _sample_data
            ["\n        101.661522,3.096810,0.000000\n        101.661583,3.096750,0.000000\n        101.661423,3.096560,0.000000\n        101.660912,3.096200,0.000000\n        101.660881,3.096050,0.000000\n        101.660973,3.095602,0.000000\n      "]}]},
       {"name"=>["Old House"],
        "description"=>
-        ['{"icon":"lookouttower","desc":"This is where the old house is."}'],
+        ['{"category":"lookouttower","desc":"This is where the old house is.","thumb":"http://example.com/thumb.jpg"}'],
        "styleUrl"=>["#style8"],
        "Point"=>[{"coordinates"=>["101.659851,3.099116,0.000000"]}]}]}]}]
 end

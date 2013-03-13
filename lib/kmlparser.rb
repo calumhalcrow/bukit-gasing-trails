@@ -51,9 +51,7 @@ class KMLParser
         "category" => "trail",
       }
       if (placemark["description"].is_a? Array and placemark["description"][0].is_a? String)
-        meta = JSON.parse(placemark["description"][0])
-        way["category"] = meta["category"]
-        way["desc"] = meta["desc"]
+        way = way.merge(self._extract_meta_info(placemark))
       end
       @ways << way
     end
@@ -62,15 +60,22 @@ class KMLParser
   def _extract_points(placemarks)
     placemarks.select{|p| p["Point"]}.each do |placemark|
       lon, lat, alt = self._extract_coords(placemark)[0].split(',')
-      meta = JSON.parse(placemark["description"][0])
       point = {
         "name" => placemark["name"][0],
-        "icon" => meta["icon"],
-        "desc" => meta["desc"],
         "node" => {"lat" => lat, "lon" => lon},
       }
+      point = point.merge(self._extract_meta_info(placemark))
       @points << point
     end
+  end
+
+  def _extract_meta_info(placemark)
+    model = {}
+    meta = JSON.parse(placemark["description"][0])
+    model["category"] = meta["category"]
+    model["desc"] = meta["desc"]
+    model["thumb"] = meta["thumb"]
+    return model
   end
 
   def to_json
