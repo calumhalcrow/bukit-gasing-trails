@@ -6,10 +6,9 @@ var bukitGasing = function () {
     var that = {};
     var ways = [];
     var points = [];
-    var current_open_info_window;
+    var currentOpenInfoWindow;
     var map;
-    var positions_with_icons = [];
-    var icons_hidden = true;
+    var iconsHidden = true;
     var markers = [];
 
     that.init = function () {
@@ -64,15 +63,15 @@ var bukitGasing = function () {
         google.maps.event.addListener(shape, 'click', function (event) {
             var position = shape.position || event.latLng;
             var infoWindow = new google.maps.InfoWindow({
-                content: that._info_window_content(model),
+                content: that.info_window_content(model),
                 position: position,
                 maxWidth: 500
             });
 
-            if (current_open_info_window) {
-                current_open_info_window.close();
+            if (currentOpenInfoWindow) {
+                currentOpenInfoWindow.close();
             }
-            current_open_info_window = infoWindow;
+            currentOpenInfoWindow = infoWindow;
 
             infoWindow.open(map);
         });
@@ -80,12 +79,12 @@ var bukitGasing = function () {
 
     that.on_zoom_changed = function () {
         var zoomLevel = map.getZoom();
-        if (zoomLevel >= 18 && icons_hidden) {
+        if (zoomLevel >= 18 && iconsHidden) {
             that.show_icons();
-            icons_hidden = false;
-        } else if (zoomLevel < 18 && !icons_hidden) {
+            iconsHidden = false;
+        } else if (zoomLevel < 18 && !iconsHidden) {
             that.hide_icons();
-            icons_hidden = true;
+            iconsHidden = true;
         }
     };
 
@@ -105,7 +104,7 @@ var bukitGasing = function () {
         });
     };
 
-    that._info_window_content = function (model) {
+    that.info_window_content = function (model) {
         var content = '<div class="infowindow"><h1>'+model.name+'</h1>';
         if (model.thumb) {
             content = content+'<img src="'+model.thumb+'"/>';
