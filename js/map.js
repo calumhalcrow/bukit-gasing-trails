@@ -6,6 +6,7 @@ var bukitGasing = function () {
     var that = {};
     var ways = [];
     var points = [];
+    var current_open_info_window;
     var map;
     var positions_with_icons = [];
     var icons_hidden = true;
@@ -67,6 +68,12 @@ var bukitGasing = function () {
                 position: position,
                 maxWidth: 500
             });
+
+            if (current_open_info_window) {
+                current_open_info_window.close();
+            }
+            current_open_info_window = infoWindow;
+
             infoWindow.open(map);
         });
     };
