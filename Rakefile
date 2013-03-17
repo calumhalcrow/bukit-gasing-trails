@@ -11,3 +11,13 @@ namespace :gm do
     File.open('js/map.json', 'w') {|f| f.puts json }
   end
 end
+
+namespace :deploy do
+  desc "Deploy site to production."
+  task :full do
+    `sass --update sass/style.scss:css/style.css`
+    Rake::Task["gm:fetch"].invoke
+    `bundle exec jekyll --no-auto --no-server`
+    `appcfg.py update _site`
+  end
+end
