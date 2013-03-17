@@ -10,3 +10,4 @@ plugins:     ./_plugins
 future:      true
 markdown:    maruku
 permalink:   date
+exclude:     [Gemfile, Gemfile.lock, Rakefile, README, sass, t, lib, _vendor]
