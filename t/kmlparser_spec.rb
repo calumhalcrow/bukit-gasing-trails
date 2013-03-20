@@ -26,8 +26,8 @@ describe KMLParser, '#parse' do
     expect(parser.points[0]["thumb"]).to eq("http://example.com/thumb.jpg")
 
     rimba = parser.ways.select{|w| w["name"] == "Rimba Tower"}[0]
-    expect(rimba["desc"]).to eq("Nice little park.");
-    expect(rimba["category"]).to eq("park");
+    expect(rimba["desc"]).to eq("Nice little park.")
+    expect(rimba["category"]).to eq("park")
     rimba["disabled"].should be_true
   end
 end
