@@ -131,69 +131,38 @@ var bukitGasing = function () {
     };
 
     that.poly_type_and_options = function (way) {
-        var options = {};
-        var polyType;
+        var options = {
+            strokeColor: "#2E546A",
+            strokeOpacity: 0.5,
+            strokeWeight: 1
+        };
+        var polyType = 'Polyline';
         if (way.category == 'trail') {
-            polyType = 'Polyline';
-            options = {
-                strokeColor: '#7C4D27',
-                strokeOpacity: 1.0,
-                strokeWeight: 2,
-                zIndex: 10
-            };
-        } else if (way.category == 'boundary') {
+            options['strokeColor'] = '#7C4D27';
+            options['strokeOpacity'] = 1.0;
+            options['strokeWeight'] = 2;
+        } else if (way.category == 'place_of_interest') {
             polyType = 'Polygon';
-            options = {
-                strokeColor: "#196224",
-                strokeOpacity: 0.8,
-                strokeWeight: 1,
-                fillColor: "#196224",
-                fillOpacity: 0.05,
-                clickable: false
-            };
-        } else if (way.category == 'reservoir') {
+            options['strokeColor'] = "#7D4281";
+            options['fillColor'] = "#B440BB";
+            options['fillOpacity'] = 0.5;
+        } else if (way.category == 'park') {
             polyType = 'Polygon';
-            options = {
-                strokeColor: "#2E546A",
-                strokeOpacity: 0.5,
-                strokeWeight: 1,
-                fillColor: "#54A9D9",
-                fillOpacity: 0.5
-            };
-        } else if (way.category == 'place_of_worship' || way.category == 'cemetery' || way.category == 'playground' || way.category == 'park') {
-            polyType = 'Polygon';
-            options = {
-                strokeColor: "#7D4281",
-                strokeOpacity: 0.5,
-                strokeWeight: 1,
-                fillColor: "#B440BB",
-                fillOpacity: 0.5
-            };
+            options['strokeColor'] = "#154B07";
+            options['fillColor'] = "#2DA011";
+            options['fillOpacity'] = 0.5;
         } else if (way.category == 'parking') {
             polyType = 'Polygon';
-            options = {
-                strokeColor: "#AFA941",
-                strokeOpacity: 0.5,
-                strokeWeight: 1,
-                fillColor: "#F0E328",
-                fillOpacity: 0.5
-            };
+            options['strokeColor'] = "#AFA941";
+            options['fillColor'] = "#F0E328";
+            options['fillOpacity'] = 0.5;
         } else if (way.category == 'road') {
-            polyType = 'Polyline';
-            options = {
-                strokeColor: '#ffffff',
-                strokeOpacity: 0.5,
-                strokeWeight: 4,
-                zIndex: 10
-            };
+            options['strokeColor'] = '#ffffff';
+            options['strokeWeight'] = 4;
         } else if (way.category == 'bridge') {
-            polyType = 'Polyline';
-            options = {
-                strokeColor: '#000000',
-                strokeOpacity: 1.0,
-                strokeWeight: 5,
-                zIndex: 10
-            };
+            options['strokeColor'] = '#2D1C0D';
+            options['strokeOpacity'] = 1.0;
+            options['strokeWeight'] = 5;
         }
         return [polyType, options];
     };
