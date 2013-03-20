@@ -40,6 +40,10 @@ var bukitGasing = function () {
 
     that.display_ways_on_map = function () {
         $.each(ways, function (index, way) {
+            if (way.disabled) {
+                return false;
+            }
+
             var coords = new Array();
 
             $.each(way.positions, function (index, position) {
@@ -90,6 +94,10 @@ var bukitGasing = function () {
 
     that.show_icons = function () {
         $.each(points, function (index, point) {
+            if (point.disabled) {
+                return false;
+            }
+
             var latLng = new google.maps.LatLng(point.node.lat, point.node.lon);
 
             // Add placemark at this position with icon.

@@ -75,6 +75,7 @@ class KMLParser
     model["category"] = meta["category"]
     model["desc"] = meta["desc"]
     model["thumb"] = meta["thumb"]
+    model["disabled"] = meta["disabled"]
     return model
   end
 

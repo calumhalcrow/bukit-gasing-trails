@@ -28,6 +28,7 @@ describe KMLParser, '#parse' do
     rimba = parser.ways.select{|w| w["name"] == "Rimba Tower"}[0]
     expect(rimba["desc"]).to eq("Nice little park.");
     expect(rimba["category"]).to eq("park");
+    rimba["disabled"].should be_true
   end
 end
 
@@ -98,7 +99,7 @@ def _sample_data
           "coordinates"=>
            ["\n        101.659737,3.098931,0.000000\n        101.659798,3.099012,0.000000\n        101.659782,3.099078,0.000000\n        101.660027,3.099274,0.000000\n      "]}]},
       {"name"=>["Rimba Tower"],
-       "description"=>['{"category":"park","desc":"Nice little park."}'],
+       "description"=>['{"category":"park","desc":"Nice little park.","disabled":true}'],
        "styleUrl"=>["#style2"],
        "LineString"=>
         [{"tessellate"=>["1"],
