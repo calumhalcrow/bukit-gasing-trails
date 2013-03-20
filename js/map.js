@@ -10,16 +10,19 @@ var bukitGasing = function () {
     var map;
     var iconsHidden = true;
     var markers = [];
+    var currentZoom = 16;
+    var center = new google.maps.LatLng(3.097943, 101.660782);
 
     that.init = function () {
         that.init_map();
         that.fetch_ways();
+        $('a#full-screen').on('click', that.on_fullscreen_click);
     };
 
     that.init_map = function () {
         var mapOptions = {
-            center: new google.maps.LatLng(3.097943, 101.660782),
-            zoom: 16,
+            center: center,
+            zoom: currentZoom,
             mapTypeId: google.maps.MapTypeId.HYBRID
         };
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -35,6 +38,7 @@ var bukitGasing = function () {
             points = data.points;
             that.display_ways_on_map();
             google.maps.event.addListener(map, 'zoom_changed', that.on_zoom_changed);
+            google.maps.event.addListener(map, 'dragend', that.on_dragend);
         });
     };
 
@@ -82,14 +86,18 @@ var bukitGasing = function () {
     };
 
     that.on_zoom_changed = function () {
-        var zoomLevel = map.getZoom();
-        if (zoomLevel >= 18 && iconsHidden) {
+        currentZoom = map.getZoom();
+        if (currentZoom >= 18 && iconsHidden) {
             that.show_icons();
             iconsHidden = false;
-        } else if (zoomLevel < 18 && !iconsHidden) {
+        } else if (currentZoom < 18 && !iconsHidden) {
             that.hide_icons();
             iconsHidden = true;
         }
+    };
+
+    that.on_dragend = function () {
+        center = map.getCenter();
     };
 
     that.show_icons = function () {
@@ -165,6 +173,32 @@ var bukitGasing = function () {
             options['strokeWeight'] = 5;
         }
         return [polyType, options];
+    };
+
+    that.on_fullscreen_click = function () {
+        var sidecol = $('#side-col');
+        if (sidecol.filter(':hidden').size()) {
+            $('#map_canvas').animate({
+                width: '61%',
+            }, function () {
+                sidecol.show();
+            });
+        } else {
+            sidecol.hide();
+            $('#map_canvas').animate({
+                width: '100%',
+            }, function () {
+                that.init_map();
+                that.display_ways_on_map();
+                if (currentZoom >= 18) {
+                    that.show_icons();
+                    iconsHidden = false;
+                }
+                google.maps.event.addListener(map, 'zoom_changed', that.on_zoom_changed);
+                google.maps.event.addListener(map, 'dragend', that.on_dragend);
+            });
+        }
+        return false;
     };
 
     return that;
