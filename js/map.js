@@ -39,10 +39,10 @@ var bukitGasing = function () {
     };
 
     that.display_ways_on_map = function () {
-        ways.forEach(function (way) {
+        $.each(ways, function (index, way) {
             var coords = new Array();
 
-            way.positions.forEach(function (position) {
+            $.each(way.positions, function (index, position) {
                 var latLng = new google.maps.LatLng(position.node.lat, position.node.lon);
                 coords.push(latLng);
             });
@@ -89,7 +89,7 @@ var bukitGasing = function () {
     };
 
     that.show_icons = function () {
-        points.forEach(function (point) {
+        $.each(points, function (index, point) {
             var latLng = new google.maps.LatLng(point.node.lat, point.node.lon);
 
             // Add placemark at this position with icon.
@@ -117,7 +117,7 @@ var bukitGasing = function () {
     };
 
     that.hide_icons = function () {
-        markers.forEach(function (marker) {
+        $.each(markers, function (index, marker) {
             marker.setMap(null);
         });
     };
