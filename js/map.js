@@ -45,7 +45,7 @@ var bukitGasing = function () {
     that.display_ways_on_map = function () {
         $.each(ways, function (index, way) {
             if (way.disabled) {
-                return false;
+                return;
             }
 
             var coords = new Array();
