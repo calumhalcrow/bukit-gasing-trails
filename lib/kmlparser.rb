@@ -71,15 +71,19 @@ class KMLParser
 
   def _extract_meta_info(placemark)
     model = {}
-    meta = JSON.parse(placemark["description"][0])
-    model["category"] = meta["category"]
-    model["desc"] = meta["desc"]
-    model["disabled"] = meta["disabled"]
-    if meta["thumb"]
-      model["photo"] = {
-        "thumb" => meta["thumb"],
-        "flickr_url" => self.extract_flickr_url(meta["thumb"]),
-      }
+    begin
+      meta = JSON.parse(placemark["description"][0])
+      model["category"] = meta["category"]
+      model["desc"] = meta["desc"]
+      model["disabled"] = meta["disabled"]
+      if meta["thumb"]
+        model["photo"] = {
+          "thumb" => meta["thumb"],
+          "flickr_url" => self.extract_flickr_url(meta["thumb"]),
+        }
+      end
+    rescue
+      print "Error in #{placemark}: #{$!}";
     end
     return model
   end
