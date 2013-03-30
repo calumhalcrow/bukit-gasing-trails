@@ -118,8 +118,8 @@ var bukitGasing = function () {
 
     that.info_window_content = function (model) {
         var content = '<div class="infowindow"><h1>'+model.name+'</h1>';
-        if (model.thumb) {
-            content = content+'<img src="'+model.thumb+'"/>';
+        if (model.photo) {
+            content = content+'<a href="'+model.photo.flickr_url+'" target="_blank"><img src="'+model.photo.thumb+'"/></a>';
         }
         if (model.desc) {
             content = content+'<p>'+model.desc+'</p>';

@@ -74,9 +74,19 @@ class KMLParser
     meta = JSON.parse(placemark["description"][0])
     model["category"] = meta["category"]
     model["desc"] = meta["desc"]
-    model["thumb"] = meta["thumb"]
     model["disabled"] = meta["disabled"]
+    if meta["thumb"]
+      model["photo"] = {
+        "thumb" => meta["thumb"],
+        "flickr_url" => self.extract_flickr_url(meta["thumb"]),
+      }
+    end
     return model
+  end
+
+  def extract_flickr_url(thumb)
+    match = thumb.match /\/([0-9]+)_/
+    return "http://flickr.com/photos/calumhalcrow/#{match.captures[0]}/"
   end
 
   def to_json
