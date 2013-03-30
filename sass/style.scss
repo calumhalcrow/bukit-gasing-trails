@@ -43,8 +43,9 @@ body {
         line-height: 1.8em;
     }
     #side-col {
-        float: left;
-        width: 37%;
+        position: absolute;
+        display: none;
+        width: 38%;
         .copyright {
             font-size: 0.8em;
             color: #333;
@@ -54,10 +55,11 @@ body {
         }
     }
     #map_canvas {
-        float: right;
-        width: 61%;
+        position: relative;
         height: 100%;
         border: 1px solid #666;
+        left: 0;
+        margin-right: 0;
         .infowindow {
           width: 360px;
           h1 {
