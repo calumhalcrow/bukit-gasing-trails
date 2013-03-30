@@ -167,6 +167,9 @@ var bukitGasing = function () {
         } else if (way.category == 'road') {
             options['strokeColor'] = '#ffffff';
             options['strokeWeight'] = 4;
+        } else if (way.category == 'stream') {
+            options['strokeColor'] = '#0098DE';
+            options['strokeWeight'] = 2;
         } else if (way.category == 'bridge') {
             options['strokeColor'] = '#2D1C0D';
             options['strokeOpacity'] = 1.0;
