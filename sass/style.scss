@@ -8,7 +8,7 @@ body {
     height: 100%;
     margin: 0;
     position: relative;
-    font-family: Simonetta, "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-family: "Noto Sans", sans-serif;
     background: url(/img/bg.jpg) no-repeat;
     background-size: 100%;
 }
@@ -19,6 +19,7 @@ body {
     position: relative;
     p {
         margin: 0 0 1.5em;
+        font-size: 0.9em;
         line-height: 1.8em;
     }
     #side-col {
@@ -26,10 +27,11 @@ body {
         width: 36%;
         padding: 1%;
         h1 {
-            font-size: 2em;
+            font-size: 1.8em;
+            margin-bottom: 1em;
         }
         .copyright {
-            font-size: 0.8em;
+            font-size: 0.7em;
             color: #333;
             width: 70%;
             text-align: center;
