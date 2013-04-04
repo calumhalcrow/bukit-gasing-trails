@@ -11,13 +11,11 @@ var bukitGasing = function () {
     var iconsHidden = true;
     var markers = [];
     var currentZoom = 16;
-    var center = new google.maps.LatLng(3.097729, 101.664927);
+    var center = new google.maps.LatLng(3.097943, 101.660782);
 
     that.init = function () {
         that.init_map();
         that.fetch_ways();
-        that.on_fullscreen_click();
-        $('a#full-screen').on('click', that.on_fullscreen_click);
     };
 
     that.init_map = function () {
@@ -27,6 +25,8 @@ var bukitGasing = function () {
             mapTypeId: google.maps.MapTypeId.HYBRID
         };
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+              new FullScreenControl(map));
     };
 
     that.fetch_ways = function () {
@@ -172,25 +172,6 @@ var bukitGasing = function () {
             options['strokeWeight'] = 5;
         }
         return [polyType, options];
-    };
-
-    that.on_fullscreen_click = function () {
-        var sidecol = $('#side-col');
-        if (sidecol.filter(':hidden').size()) {
-            $('#map_canvas').animate({
-                'left': '39%',
-                'margin-right': '39%'
-            }, function () {
-                sidecol.show();
-            });
-        } else {
-            sidecol.hide();
-            $('#map_canvas').animate({
-                'left': 0,
-                'margin-right': 0
-            });
-        }
-        return false;
     };
 
     return that;
