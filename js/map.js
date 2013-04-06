@@ -153,7 +153,7 @@ var bukitGasing = function () {
         } else if (way.category == 'park') {
             polyType = 'Polygon';
             options['strokeColor'] = "#154B07";
-            options['fillColor'] = "#2DA011";
+            options['fillColor'] = "#AFC368";
             options['fillOpacity'] = 0.5;
         } else if (way.category == 'parking') {
             polyType = 'Polygon';
