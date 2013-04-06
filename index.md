@@ -7,7 +7,7 @@ It's a perfect place to escape for a couple of hours on the weekend to get some 
 
 The map opposite shows the park's entrances, trails and features. Along the way points of interest are marked by icons (zoom in to see them) which can be clicked to get more information about the feature highlighted. Reading them all should give you a fairly complete idea of what you can see at Bukit Gasing.
 
-When you are ready to visit the park, print this page to get a copy of the map to take with you! Or simply bookmark this site and refer to it with your smart-phone or tablet while there (signal is not always great). Trail positions may not be entirely accurate, however the way in which they lead into one another is, so if you're following a certain path you will come to junctions as stated. Not all park features are marked, although I'm working to make the map as complete as possible.
+When you are ready to visit the park, bookmark this site and refer to it with your smart-phone or tablet while there (signal is not always great). Trail positions may not be entirely accurate, however the way in which they lead into one another is, so if you're following a certain path you will come to junctions as stated. Not all park features are marked, although I'm working to make the map as complete as possible.
 
 I hope you find time to experience what Bukit Gasing has to offer and that this little site helps in some way. Feel free to [get in touch](http://facebook.com/calumhalcrow) with questions. Please note that I am not an expert in matters related to the park or Malaysian wildlife in general so my ability to advise is limited.
 
