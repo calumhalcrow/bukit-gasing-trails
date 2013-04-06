@@ -63,7 +63,10 @@ var bukitGasing = function () {
             var shape = new google.maps[polyType](options);
             shape.setMap(map);
 
-            that.make_info_window_event(shape, way);
+            // Only attach InfoWindows to trails.
+            if (polyType === 'Polyline') {
+                that.make_info_window_event(shape, way);
+            }
         });
     };
 
@@ -147,16 +150,19 @@ var bukitGasing = function () {
             options['strokeWeight'] = 2;
         } else if (way.category == 'place_of_interest') {
             polyType = 'Polygon';
+            options['clickable'] = false;
             options['strokeColor'] = "#7D4281";
             options['fillColor'] = "#B440BB";
             options['fillOpacity'] = 0.5;
         } else if (way.category == 'park') {
             polyType = 'Polygon';
+            options['clickable'] = false;
             options['strokeColor'] = "#154B07";
             options['fillColor'] = "#2DA011";
             options['fillOpacity'] = 0.5;
         } else if (way.category == 'parking') {
             polyType = 'Polygon';
+            options['clickable'] = false;
             options['strokeColor'] = "#AFA941";
             options['fillColor'] = "#F0E328";
             options['fillOpacity'] = 0.5;
