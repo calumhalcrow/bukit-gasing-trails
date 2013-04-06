@@ -62,29 +62,6 @@ var bukitGasing = function () {
 
             var shape = new google.maps[polyType](options);
             shape.setMap(map);
-
-            // Only attach InfoWindows to trails.
-            if (polyType === 'Polyline') {
-                that.make_info_window_event(shape, way);
-            }
-        });
-    };
-
-    that.make_info_window_event = function (shape, model) {
-        google.maps.event.addListener(shape, 'click', function (event) {
-            var position = shape.position || event.latLng;
-            var infoWindow = new google.maps.InfoWindow({
-                content: that.info_window_content(model),
-                position: position,
-                maxWidth: 500
-            });
-
-            if (currentOpenInfoWindow) {
-                currentOpenInfoWindow.close();
-            }
-            currentOpenInfoWindow = infoWindow;
-
-            infoWindow.open(map);
         });
     };
 
@@ -119,6 +96,25 @@ var bukitGasing = function () {
         });
     };
 
+    that.make_info_window_event = function (shape, model) {
+        google.maps.event.addListener(shape, 'click', function (event) {
+            var position = shape.position || event.latLng;
+            var infoWindow = new google.maps.InfoWindow({
+                content: that.info_window_content(model),
+                position: position,
+                maxWidth: 500
+            });
+
+            if (currentOpenInfoWindow) {
+                currentOpenInfoWindow.close();
+            }
+            currentOpenInfoWindow = infoWindow;
+
+            infoWindow.open(map);
+        });
+    };
+
+
     that.info_window_content = function (model) {
         var content = '<div class="infowindow"><h1>'+model.name+'</h1>';
         if (model.photo) {
@@ -141,7 +137,8 @@ var bukitGasing = function () {
         var options = {
             strokeColor: "#2E546A",
             strokeOpacity: 0.5,
-            strokeWeight: 1
+            strokeWeight: 1,
+            clickable: false
         };
         var polyType = 'Polyline';
         if (way.category == 'trail') {
@@ -150,19 +147,16 @@ var bukitGasing = function () {
             options['strokeWeight'] = 2;
         } else if (way.category == 'place_of_interest') {
             polyType = 'Polygon';
-            options['clickable'] = false;
             options['strokeColor'] = "#7D4281";
             options['fillColor'] = "#B440BB";
             options['fillOpacity'] = 0.5;
         } else if (way.category == 'park') {
             polyType = 'Polygon';
-            options['clickable'] = false;
             options['strokeColor'] = "#154B07";
             options['fillColor'] = "#2DA011";
             options['fillOpacity'] = 0.5;
         } else if (way.category == 'parking') {
             polyType = 'Polygon';
-            options['clickable'] = false;
             options['strokeColor'] = "#AFA941";
             options['fillColor'] = "#F0E328";
             options['fillOpacity'] = 0.5;
