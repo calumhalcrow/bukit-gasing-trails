@@ -1,8 +1,6 @@
 ---
 layout: default
 ---
-Bukit Gasing is a forest park wedged between Kuala Lumpur and Petaling Jaya.
-
 It's a perfect place to escape for a couple of hours on the weekend to get some exercise. Its large enough to make you feel like you're out of the city, but central enough for a visit that won't take up the entire day.
 
 The map opposite shows the park's entrances, trails and features. Along the way points of interest are marked by icons (zoom in to see them) which can be clicked to get more information about the feature highlighted. Reading them all should give you a fairly complete idea of what you can see at Bukit Gasing.

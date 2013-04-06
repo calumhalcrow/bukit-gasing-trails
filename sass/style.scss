@@ -22,8 +22,8 @@ body {
         font-size: 0.9em;
         line-height: 1.8em;
     }
-    #side-col {
-        position: absolute;
+    #intro, #main {
+        float: left;
         width: 36%;
         padding: 1%;
         h1 {
@@ -38,11 +38,16 @@ body {
             margin: 0 auto;
         }
     }
+    #intro {
+      padding-bottom: 0;
+    }
+    #main {
+      padding-top: 0;
+    }
     #map_canvas {
-        position: relative;
+        float: right;
+        width: 61%;
         height: 100%;
-        left: 39%;
-        margin-right: 39%;
         .infowindow {
           width: 360px;
           h1 {
@@ -56,4 +61,19 @@ body {
           }
         }
     }
+}
+
+@media screen and (max-width: 600px) {
+  #content {
+    #intro, #main {
+      float: none;
+      width: 100%;
+    }
+    #map_canvas {
+      float: right;
+      width: 100%;
+      height: 50%;
+      margin-bottom: 1%;
+    }
+  }
 }
